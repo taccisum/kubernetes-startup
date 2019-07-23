@@ -33,7 +33,7 @@ else
     yum install -y kubelet-$VERSION kubeadm-$VERSION kubectl-$VERSION --disableexcludes=kubernetes
 fi
 
-if [ $? -eq 0];then
+if [ $? -eq 0 ];then
     success '安装Kubernetes成功'
     info '启动kubelet'
     systemctl enable --now kubelet
