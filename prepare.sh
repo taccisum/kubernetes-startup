@@ -17,5 +17,8 @@ if [ $? -eq 1 ];then
     VERSION=$KUBE_VERSION . ./prepare/kubernetes.sh
 fi
 
+info '开启网桥过滤'
+./prepare/networkon.sh
+
 info '禁用交换内存'
 ./prepare/swapoff.sh
