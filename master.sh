@@ -17,7 +17,7 @@ fi
 check_kubenetes
 if [ $? -eq 1 ];then
     info '准备安装kubenetes'
-    VERSION=KUBE_VERSION ./prepare/kubeadm.sh
+    VERSION=KUBE_VERSION ./prepare/kubernetes.sh
 fi
 
 # init control plane node 
