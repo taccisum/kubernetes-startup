@@ -24,5 +24,12 @@ fi
 info '初始化master节点'
 kubeadm init --image-repository registry.aliyuncs.com/google_containers
 
-info '修改apiserver insecure port，允许8080端口访问'
-sed -i 's/insecure-port=0/insecure-port=8080/g' /etc/kubernetes/manifests/kube-apiserver.yaml
+if [ $? -eq 0 ];then
+    success '初始化master节点成功'
+    info '修改apiserver insecure port，允许8080端口访问'
+    sed -i 's/insecure-port=0/insecure-port=8080/g' /etc/kubernetes/manifests/kube-apiserver.yaml
+else
+    error '初始化master节点失败'
+    exit 1
+fi
+
