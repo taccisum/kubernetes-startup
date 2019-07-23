@@ -20,6 +20,9 @@ if [ $? -eq 1 ];then
     VERSION=$KUBE_VERSION . ./prepare/kubernetes.sh
 fi
 
+info '禁用交换内存'
+./prepare/swapoff.sh
+
 # init control plane node 
 info '初始化master节点'
 kubeadm init \

@@ -48,6 +48,9 @@ if [ $? -eq 1 ];then
     VERSION=$KUBE_VERSION . ./prepare/kubernetes.sh
 fi
 
+info '禁用交换内存'
+./prepare/swapoff.sh
+
 info '准备加入kubernetes集群，目标master：'$MASTER_API_SERVER
 kubeadm join $MASTER_API_SERVER \
     --token $TOKEN \
