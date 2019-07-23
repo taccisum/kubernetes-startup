@@ -1,5 +1,6 @@
 # Kubernetes Startup Script
 
+目前只支持`CentOS 7`。
 
 ## How To
 
