@@ -2,26 +2,8 @@
 cd `dirname $0`
 
 source ./log.sh
-source ./check.sh
 
 h1 '准备启动kubernetes master节点'
-
-info '执行检查操作'
-
-check_docker_ce
-if [ $? -eq 1 ];then
-    info '准备安装docker'
-    VERSION=$DOCKER_VERSION . ./prepare/docker.sh
-fi
-
-check_kubenetes
-if [ $? -eq 1 ];then
-    info '准备安装kubenetes'
-    VERSION=$KUBE_VERSION . ./prepare/kubernetes.sh
-fi
-
-info '禁用交换内存'
-./prepare/swapoff.sh
 
 # init control plane node 
 info '初始化master节点'
@@ -41,4 +23,3 @@ else
     error '初始化master节点失败'
     exit 1
 fi
-

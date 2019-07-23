@@ -7,7 +7,6 @@
 cd `dirname $0`
 
 source ./log.sh
-source ./check.sh
 
 function help_info() {
     info '使用示例: MASTER_API_SERVER=192.168.0.207:6443 TOKEN=sjnl0w.j0tltfmnr62rfzzw CA_CERT_HASH=sha256:2f95521879a56654a3658d120d5d75d70edd1b043eb105bf7c3731ef467eadb6 ./worker.sh'
@@ -32,24 +31,7 @@ function check_params() {
 
 h1 '准备启动kubernetes worker节点'
 
-info '执行检查操作'
-
 check_params
-
-check_docker_ce
-if [ $? -eq 1 ];then
-    info '准备安装docker'
-    VERSION=$DOCKER_VERSION . ./prepare/docker.sh
-fi
-
-check_kubenetes
-if [ $? -eq 1 ];then
-    info '准备安装kubenetes'
-    VERSION=$KUBE_VERSION . ./prepare/kubernetes.sh
-fi
-
-info '禁用交换内存'
-./prepare/swapoff.sh
 
 info '准备加入kubernetes集群，目标master：'$MASTER_API_SERVER
 kubeadm join $MASTER_API_SERVER \
