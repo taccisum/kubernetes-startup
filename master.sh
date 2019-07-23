@@ -15,6 +15,8 @@ if [ $? -eq 0 ];then
     success '初始化master节点成功'
     info '修改apiserver insecure port，允许8080端口访问'
     sed -i 's/insecure-port=0/insecure-port=8080/g' /etc/kubernetes/manifests/kube-apiserver.yaml
+    info '重启apiserver'
+    docker ps -a | grep 'kube-apiserver_kube-apiserver' | awk '{print $1}' | head -1 | xargs sudo docker restart
     info '安装网络组件'
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     info 'iptable放行'
