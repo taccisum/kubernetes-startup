@@ -18,8 +18,11 @@ else
     yum -y install docker-ce-$VERSION
 fi
 
-if [ $? -eq 0];then
+if [ $? -eq 0 ];then
     success '安装docker-ce成功'
+    info '准备启动docker'
+    systemctl enable docker
+    systemctl start docker
 else
     error '安装docker-ce失败'
     exit 1
