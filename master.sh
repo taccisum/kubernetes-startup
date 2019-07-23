@@ -14,7 +14,7 @@ if [ $? -eq 1 ];then
     VERSION=DOCKER_VERSION ./prepare/docker.sh
 fi
 
-check_docker_ce
+check_kubenetes
 if [ $? -eq 1 ];then
     info '准备安装kubenetes'
     VERSION=KUBE_VERSION ./prepare/kubeadm.sh
