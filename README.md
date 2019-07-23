@@ -35,3 +35,15 @@ CA_CERT_HASH=sha256:e6da2fc494e5aab3bfc4913e8fdedc9cb8028e67f82492030426aef512a3
 ```
 
 以上环境变量根据你在创建master节点时得到的信息做相应调整。
+
+
+## FAQ
+
+### Worker节点加入集群时，明明显示成功了，却在master节点中获取不到信息？
+
+遇到这种情况很有可能你的hostname与其它机器冲突了（因为k8s的node name是取的主机name），这在使用虚拟机时可能尤其常见。使用以下命名修改一下hostname，然后重新join即可
+
+```shell
+$ hostnamectl set-hostname {myhostname}
+```
+
