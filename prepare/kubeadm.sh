@@ -26,10 +26,10 @@ setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 if [ -z $VERSION ];then
-    info '安装最新版本kubernetes（可以通过环境变量VERSION指定版本）'
+    info '安装最新版本kubernetes'
     yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 else
-    info '安装'$VERSION'版本kubernetes'
+    info '安装版本kubernetes-'$VERSION
     yum install -y kubelet-$VERSION kubeadm-$VERSION kubectl-$VERSION --disableexcludes=kubernetes
 fi
 
